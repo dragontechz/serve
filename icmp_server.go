@@ -16,7 +16,7 @@ var key []byte = []byte("0123456789abcdef0123456789abcdef")
 
 func main() {
 	localAddr := ":9090"  // Port local sur lequel le proxy écoute
-	remoteAddr := ":8888" // Adresse distante vers laquelle le trafic sera redirigé
+	remoteAddr := ":8080" // Adresse distante vers laquelle le trafic sera redirigé
 
 	listener, err := net.Listen("tcp", localAddr)
 	if err != nil {
@@ -32,7 +32,7 @@ func main() {
 			log.Printf("Erreur lors de l'acceptation de la connexion: %v", err)
 			continue
 		}
-		clientConn.Read(make([]byte, 1024))
+		clientConn.Read(make([]byte, 1024*32))
 		clientConn.Write([]byte("HTTP/1.1 200 OK\r\n\r\n"))
 
 		go handleConnection(clientConn, remoteAddr)
@@ -55,7 +55,7 @@ func handleConnection(clientConn net.Conn, remoteAddr string) {
 }
 func recv_encryted_send_unencrypted(src, dst net.Conn) error {
 	// Créer un buffer pour les données
-	buffer := make([]byte, 1024)
+	buffer := make([]byte, 1024*32)
 
 	for {
 		// Lire des données depuis la connexion
@@ -84,7 +84,7 @@ func recv_encryted_send_unencrypted(src, dst net.Conn) error {
 
 func recv_unencryted_send_encrypted(src, dst net.Conn) error {
 	// Créer un buffer pour les données
-	buffer := make([]byte, 1024)
+	buffer := make([]byte, 1024*32)
 
 	for {
 		// Lire des données depuis la connexion
