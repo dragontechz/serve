@@ -32,8 +32,6 @@ func main() {
 			log.Printf("Erreur lors de l'acceptation de la connexion: %v", err)
 			continue
 		}
-		clientConn.Read(make([]byte, 1024*32))
-		clientConn.Write([]byte("HTTP/1.1 200 OK\r\n\r\n"))
 
 		go handleConnection(clientConn, remoteAddr)
 	}
