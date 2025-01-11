@@ -16,7 +16,7 @@ var key []byte = []byte("0123456789abcdef0123456789abcdef")
 
 func main() {
 	localAddr := ":9090"  // Port local sur lequel le proxy écoute
-	remoteAddr := ":8080" // Adresse distante vers laquelle le trafic sera redirigé
+	remoteAddr := ":8888" // Adresse distante vers laquelle le trafic sera redirigé
 
 	listener, err := net.Listen("tcp", localAddr)
 	if err != nil {
