@@ -37,7 +37,7 @@ func main() {
 		buf := make([]byte, 1024)
 			for {
 				n, err := conn.Read(buf)
-				if err != nil {
+				if err != nil || n < 1 {
 
 				}
 				
