@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net"
@@ -36,22 +35,6 @@ func main() {
 
 		// Lire la requête du client Vless
 		buf := make([]byte, 1024)
-		conn.Read(buf)
-		// Renvoyer la réponse au client Vless
-		resp := VlessResponse{
-			Version:   "1.0",
-			SessionID: "1234567890",
-			Port:      443,
-			Protocol:  "vless",
-		}
-		jsonResp, err := json.Marshal(resp)
-		if err != nil {
-			fmt.Println(err)
-			continue
-		}
-		_, err = conn.Write(jsonResp)
-		if err != nil {
-			fmt.Println(err)
 			for {
 				n, err := conn.Read(buf)
 				if err != nil {
@@ -60,12 +43,11 @@ func main() {
 				
 					data := string(buf[:n])
 					log.Println(data)
-					conn.Write([]byte("HTTP/2.2 200 ok"))
+					conn.Write([]byte("HTTP/1.1 200 OK"))
 				
 			}
 		}
 	}
-}
 
 type VlessRequest struct {
 	// Champs de la requête Vless
