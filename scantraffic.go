@@ -31,9 +31,7 @@ func main(){
 func display_traffic(conn net.Conn){
 	for {
 		n , err := conn.Read(buff)
-		if err != nil {
-			log.Println("ERROR:",err)
-		}
+		if err != nil {}
 
 		data := string(buff[:n])
 
