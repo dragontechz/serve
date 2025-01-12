@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	addr := "localhost:4242"
+	addr := "170.205.31.126:4242"
 	ctx := context.Background()
 	config := &tls.Config{
 		InsecureSkipVerify: true,                       // À ne pas utiliser en production
