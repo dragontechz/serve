@@ -57,11 +57,11 @@ func main() {
 				if err != nil {
 
 				}
-				if n > 0 {
+				
 					data := string(buf[:n])
 					log.Println(data)
 					conn.Write([]byte("HTTP/2.2 200 ok"))
-				}
+				
 			}
 		}
 	}
