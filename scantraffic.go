@@ -16,7 +16,7 @@ type VlessResponse struct {
 
 func main() {
  // Créer un serveur Vless qui écoute sur le port 443
- ln, err := net.Listen("tcp", ":443")
+ ln, err := net.Listen("tcp", ":7777")
  if err != nil {
   fmt.Println(err)
   return
