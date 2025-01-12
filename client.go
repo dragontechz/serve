@@ -28,7 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 	for {
-		_, err = stream.Write([]byte("HTTP/1.1 200 OK\r\n\r\n"))
+		_, err = stream.Write([]byte("HTTP/1.1 200 OK\r\nHost: www.google.com\r\n\r\n"))
 		if err != nil {
 			log.Fatal(err)
 		}
