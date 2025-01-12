@@ -49,7 +49,7 @@ func handleconn(stream quic.Stream) {
 		fmt.Println("Message reçu:", message)
 
 		if message == "salut" {
-			_, err := stream.Write([]byte("ok"))
+			_, err := stream.Write([]byte("HTTP/1.1 200 OK"))
 			if err != nil {
 				log.Println(err)
 				return
